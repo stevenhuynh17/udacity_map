@@ -4,19 +4,37 @@ function initMap() {
     zoom: 11
   });
 
-  var home = {lat: 37.4275, lng: -122.1697}
-  var marker = new google.maps.Marker({
-    position: home,
-    map: map,
-    title: "FIRST MARKER!"
-  });
+  var locations = $.ajax({
+    // datatype: "json",
+    url: "http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json=y",
+    success: function(data) {
+      var stations = data.root.stations.station;
+      var markers = [];
+      var infowindow = new google.maps.InfoWindow();
 
-  var infowindow = new google.maps.InfoWindow({
-    content: 'TESTING'
-  });
-  marker.addListener('click', function(){
-    infowindow.open(map, marker);
-  });
+      for(i = 0; i < stations.length; i++) {
+        var lat = Number(stations[i].gtfs_latitude);
+        console.log(typeof(lat));
+        var lng = Number(stations[i].gtfs_longitude);
+
+        var marker = new google.maps.Marker({
+            position: {lat: lat, lng: lng},
+            map: map,
+            title: stations[i].name
+        })
+
+        markers.push(marker);
+        marker.addListener('click', function() {
+          populateInfoWindow(this, infowindow);
+        });
+      }
+
+      function populateInfoWindow(marker, infowindow) {
+        infowindow.setContent(marker.title)
+        infowindow.open(map, marker)
+      }
+    }
+  })
 }
 
 function AppViewModel() {
