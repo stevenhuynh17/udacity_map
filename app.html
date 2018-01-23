@@ -5,14 +5,26 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
   </head>
   <body>
-    <a href='https://www.glassdoor.com/index.htm'>Powered by <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>
+    <div id="search">
+      <h1>Search</h1>
+    </div>
     <div id="map"></div>
+
     <!-- <p>First name: <input data-bind="value: firstName"/></p>
-    <p>Last name: <input data-bind="value: lastName"/></p> -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDivIJA5zlZe6-JT6c0H665WA5Q9lqGv3g&v3&callback=initMap"></script>
+    <p>Last name: <input data-bind="value: lastName"/></p>
+    <p>Combined: <span data-bind="text: fullName"></span></p>
+    <button data-bind="click: capitalizeLastName">Go caps</button> -->
+
+    <ul data-bind="foreach: seats">
+      <li data-bind="text: meal().mealName"></li>
+    </ul>
+
+
     <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDivIJA5zlZe6-JT6c0H665WA5Q9lqGv3g&v3&callback=initMap"></script>
   </body>
 </html>
