@@ -14,3 +14,11 @@ html, body {
 #id {
   float: left;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:focus { text-decoration: none; color: blue;}
+a:hover, a:active { text-decoration: none; color: blue;}
