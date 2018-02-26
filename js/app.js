@@ -30,8 +30,8 @@ ko.bindingHandlers.autoSearch = {
             }
           }
         } else {
-          for(var i = 0; i < stations.length; i++) {
-            viewModel.stations()[i].shouldShow(true);
+          for(var j = 0; j < stations.length; j++) {
+            viewModel.stations()[j].shouldShow(true);
           }
         }
     }
