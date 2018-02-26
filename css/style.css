@@ -4,15 +4,34 @@ html, body {
   padding: 0;
 }
 
-#map {
+.content {
   height: 100%;
-  width: 80%;
+  width: 100%;
+}
+
+#map {
+  height: 83.3%;
+  width: 68%;
   display: block;
   float: right;
+  border: 3px solid #000;
 }
 
 #id {
   float: left;
+
+}
+
+.search {
+  width: 30%;
+  border: 3px solid #000;
+}
+
+.list {
+  border: 3px solid #000;
+  width: 30%;
+  height: 80%;
+  overflow: scroll;
 }
 
 a {
@@ -21,4 +40,5 @@ a {
 }
 
 a:focus { text-decoration: none; color: blue;}
-a:hover, a:active { text-decoration: none; color: blue;}
+a:active { text-decoration: none; color: blue;}
+a:hover { text-decoration: none; color: red;}

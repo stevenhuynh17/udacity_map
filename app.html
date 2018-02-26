@@ -11,14 +11,15 @@
     <div id="search">
       <h1>Search</h1>
     </div>
-    <div id="map"></div>
-    <div class="">
-      <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-      <p data-bind="text: query"></p>
-      <div>
+    <div class="content">
+      <div id="map"></div>
+      <div class="search">
+          <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
+      </div>
+      <div class="list">
         <ul data-bind="foreach: stations()">
           <a href="#" data-bind="click: showInfo">
-            <li data-bind="text: name().name, visible: shouldShow()"></li>
+            <li data-bind="text: name(), visible: shouldShow"></li>
           </a>
         </ul>
       </div>
