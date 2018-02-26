@@ -85,21 +85,23 @@ function populateMap(data) {
         map: map,
         animation: google.maps.Animation.DROP,
         title: title
-    })
+    });
 
     // Allows the marker to be clicked where it'll bounce and display info
-    marker.addListener('click', function() {
-      populateInfoWindow(this, infowindow);
-      toggleBounce(this);
-    });
+    marker.addListener('click', enableMarkers);
     // Create a new instance of each station that will be stored in an array
     markers.push(new StationInformation(title, marker, connectInfo));
+  }
+
+  function enableMarkers() {
+    populateInfoWindow(this, infowindow);
+    toggleBounce(this);
   }
 
   // Enables the list of stations to be clicked and interact with the map
   function connectInfo(info) {
     toggleBounce(info.marker());
-    populateInfoWindow(info.marker(), infowindow)
+    populateInfoWindow(info.marker(), infowindow);
   }
 
   // Makes the marker bounce when clicked
@@ -107,7 +109,7 @@ function populateMap(data) {
     // Stops all markers from bouncing
     for(var i = 0; i < markers.length; i++) {
       var obj = markers[i].marker();
-      if(obj.getAnimation() != null) {
+      if(obj.getAnimation() !== null) {
         obj.setAnimation(null);
       }
     }
