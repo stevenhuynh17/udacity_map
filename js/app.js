@@ -24,14 +24,16 @@ ko.bindingHandlers.autoSearch = {
 
             if(query === match) {
               stations[i].shouldShow(true);
-
+              stations[i].marker().setVisible(true);
             } else {
               stations[i].shouldShow(false);
+              stations[i].marker().setVisible(false);
             }
           }
         } else {
           for(var j = 0; j < stations.length; j++) {
             viewModel.stations()[j].shouldShow(true);
+            stations[j].marker().setVisible(true);
           }
         }
     }
