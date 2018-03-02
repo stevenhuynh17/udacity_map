@@ -8,6 +8,10 @@ function initMap() {
   bartAPI();
 }
 
+function mapError(error) {
+  console.log(error);
+}
+
 // Custom handlers section where autoSearch does an autocomplete when searching
 // for stations
 ko.bindingHandlers.autoSearch = {
@@ -42,7 +46,7 @@ ko.bindingHandlers.autoSearch = {
 // BART AJAX API call
 function bartAPI() {
   var info = $.ajax({
-    url: "http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8&json=y",
+    url: "http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json=y",
     dataType: "json",
   })
   .done(apply)
