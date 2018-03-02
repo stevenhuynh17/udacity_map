@@ -42,9 +42,13 @@ ko.bindingHandlers.autoSearch = {
 // BART AJAX API call
 function bartAPI() {
   var info = $.ajax({
-    url: "http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json=y",
+    url: "http://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8&json=y",
     dataType: "json",
-  }).done(apply);
+  })
+  .done(apply)
+  .fail(function(error) {
+    console.log(error);
+  });
 }
 
 // Applies bindings to utilize the Knockout Framework with StationsViewModel by
