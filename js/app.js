@@ -20,7 +20,6 @@ ko.bindingHandlers.autoSearch = {
         var value = valueAccessor();
         var query = ko.unwrap(value).toLowerCase();
         var stations = viewModel.stations();
-
         if(query) {
           for(var i = 0; i < stations.length; i++) {
             var station = stations[i].name().toLowerCase();
@@ -50,9 +49,11 @@ function bartAPI() {
     dataType: "json",
   })
   .done(apply)
-  .fail(function(error) {
-    console.log(error);
-  });
+  .fail(errorHandling);
+}
+
+function errorHandling(err) {
+  console.log(err);
 }
 
 // Applies bindings to utilize the Knockout Framework with StationsViewModel by
@@ -76,12 +77,45 @@ function StationInformation(name, marker, info) {
   this.showInfo = info;
 }
 
+function individualInfo(infowindow, abbr) {
+  var url = "http://api.bart.gov/api/stn.aspx?cmd=stninfo&orig=" + abbr + "&key=MW9S-E7SL-26DU-VV8V&json=y"
+  $.ajax({
+    url: url,
+    dataType: "json"
+  })
+  .done(function(data) {
+    var base = data.root.stations.station;
+    var stationName = base.name;
+    var stationAddress = base.address + "<br>" + base.city + " " + base.zipcode;
+    var stationIntro = base.intro["#cdata-section"];
+    var stationAttraction = base.attraction["#cdata-section"];
+    var stationFood = base.food["#cdata-section"];
+    var stationShopping = base.shopping["#cdata-section"];
+    var content = "<div class='marker'>" +
+      "<div class='name'>" +
+        "<h4>" + stationName + "</h4>" +
+      "</div>" +
+      "<div class='address'>" +
+        "<p>" + stationAddress + "</p>" +
+        "<p>" + stationIntro + "</p>" +
+        "<p>" + stationAttraction + "</p>" +
+        "<p>" + stationFood + "</p>" +
+        "<p>" + stationShopping + "</p>" +
+      "</div>" +
+    "</div>"
+    infowindow.setContent(content);
+  })
+  .fail(errorHandling);
+}
+
 // Adds the markers to the Google Maps
 function populateMap(data) {
   // Extracting information for each station
   var markers = [];
   var stations = data.root.stations.station;
-  var infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow({
+    maxWidth: 250
+  });
 
   // For each station, extract the coordinates to create a new instance
   // of a google map marker
@@ -89,12 +123,14 @@ function populateMap(data) {
     var lat = Number(stations[i].gtfs_latitude);
     var lng = Number(stations[i].gtfs_longitude );
     var title = stations[i].name;
+    var abbr = stations[i].abbr;
 
     var marker = new google.maps.Marker({
         position: {lat: lat, lng: lng},
         map: map,
         animation: google.maps.Animation.DROP,
-        title: title
+        title: title,
+        abbr: abbr
     });
 
     // Allows the marker to be clicked where it'll bounce and display info
@@ -114,15 +150,20 @@ function populateMap(data) {
     populateInfoWindow(info.marker(), infowindow);
   }
 
-  // Makes the marker bounce when clicked
-  function toggleBounce(marker) {
-    // Stops all markers from bouncing
+  // Stops all markers from bouncing
+  function stopBounce(marker) {
     for(var i = 0; i < markers.length; i++) {
       var obj = markers[i].marker();
       if(obj.getAnimation() !== null) {
         obj.setAnimation(null);
       }
     }
+  }
+
+  // Makes the marker bounce when clicked
+  function toggleBounce(marker) {
+    // Stops all markers from bouncing
+    stopBounce(marker);
     // Only allow one marker to bounce at a time
     if(marker.getAnimation() !== null) {
       marker.setAnimation(null);
@@ -133,10 +174,12 @@ function populateMap(data) {
 
   // Displays information of the marker when clicked
   function populateInfoWindow(marker, infowindow) {
+    infowindow.addListener("closeclick", function() {
+      stopBounce(marker);
+    })
     infowindow.close(map, marker);
-    infowindow.setContent(marker.title);
+    individualInfo(infowindow, marker.abbr);
     infowindow.open(map, marker);
   }
-
   return markers;
 }
