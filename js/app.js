@@ -8,10 +8,6 @@ function initMap() {
   bartAPI();
 }
 
-function mapError(error) {
-  console.log(error);
-}
-
 // Custom handlers section where autoSearch does an autocomplete when searching
 // for stations
 ko.bindingHandlers.autoSearch = {
@@ -53,7 +49,7 @@ function bartAPI() {
 }
 
 function errorHandling(err) {
-  console.log(err);
+  alert("Something went wrong...\n\n" + err.responseText);
 }
 
 // Applies bindings to utilize the Knockout Framework with StationsViewModel by
