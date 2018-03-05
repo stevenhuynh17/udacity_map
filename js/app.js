@@ -78,7 +78,7 @@ function StationInformation(name, marker, info) {
 }
 
 function individualInfo(infowindow, abbr) {
-  var url = "http://api.bart.gov/api/stn.aspx?cmd=stninfo&orig=" + abbr + "&key=MW9S-E7SL-26DU-VV8V&json=y"
+  var url = "http://api.bart.gov/api/stn.aspx?cmd=stninfo&orig=" + abbr + "&key=MW9S-E7SL-26DU-VV8V&json=y";
   $.ajax({
     url: url,
     dataType: "json"
@@ -102,7 +102,7 @@ function individualInfo(infowindow, abbr) {
         "<p>" + stationFood + "</p>" +
         "<p>" + stationShopping + "</p>" +
       "</div>" +
-    "</div>"
+    "</div>";
     infowindow.setContent(content);
   })
   .fail(errorHandling);
@@ -176,7 +176,7 @@ function populateMap(data) {
   function populateInfoWindow(marker, infowindow) {
     infowindow.addListener("closeclick", function() {
       stopBounce(marker);
-    })
+    });
     infowindow.close(map, marker);
     individualInfo(infowindow, marker.abbr);
     infowindow.open(map, marker);
