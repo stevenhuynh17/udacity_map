@@ -12,16 +12,18 @@
     </div>
     <div class="content">
       <div id="map"></div>
-      <div class="search">
-          <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-      </div>
-      <div class="list">
-        <ul data-bind="foreach: stations()">
-          <a href="#" data-bind="click: showInfo">
-            <li data-bind="text: name(), visible: shouldShow"></li>
-          </a>
-        </ul>
-      </div>
+      <nav id="drawer">
+        <div class="search">
+            <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
+        </div>
+        <div class="list">
+          <ul data-bind="foreach: stations()">
+            <a href="#" data-bind="click: showInfo">
+              <li data-bind="text: name(), visible: shouldShow"></li>
+            </a>
+          </ul>
+        </div>
+      </nav>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='js/knockout-3.4.2.js'></script>

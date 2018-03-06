@@ -1,7 +1,6 @@
-html, body {
+html, body, main {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100%;
 }
 
 .content {
@@ -10,8 +9,8 @@ html, body {
 }
 
 #map {
-  height: 83.3%;
-  width: 68%;
+  height: -webkit-fill-available;
+  width: 65%;
   display: block;
   float: right;
   border: 3px solid #000;
@@ -25,12 +24,14 @@ html, body {
 .search {
   width: 30%;
   border: 3px solid #000;
+  /* margin: auto; */
 }
 
 .list {
   border: 3px solid #000;
   width: 30%;
-  height: 80%;
+  height: -webkit-fill-available;
+  /* margin: auto; */
   overflow: scroll;
 }
 
