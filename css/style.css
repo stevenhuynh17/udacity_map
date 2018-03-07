@@ -3,36 +3,10 @@ html, body, main {
   width: 100%;
 }
 
-.content {
+#map {
   height: 100%;
   width: 100%;
-}
-
-#map {
-  height: -webkit-fill-available;
-  width: 65%;
-  display: block;
-  float: right;
   border: 3px solid #000;
-}
-
-#id {
-  float: left;
-
-}
-
-.search {
-  width: 30%;
-  border: 3px solid #000;
-  /* margin: auto; */
-}
-
-.list {
-  border: 3px solid #000;
-  width: 30%;
-  height: -webkit-fill-available;
-  /* margin: auto; */
-  overflow: scroll;
 }
 
 a {
@@ -43,3 +17,30 @@ a {
 a:focus { text-decoration: none; color: blue;}
 a:active { text-decoration: none; color: blue;}
 a:hover { text-decoration: none; color: red;}
+
+nav {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+}
+
+nav.open {
+  transform: translate(0, 0);
+}
+
+@media screen and (min-width: 600px) {
+  nav {
+    position: relative;
+    transform: translate(0, 0);
+  }
+  body {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  main {
+    width: auto;
+    flex-grow: 1;
+  }
+}

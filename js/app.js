@@ -179,3 +179,7 @@ function populateMap(data) {
   }
   return markers;
 }
+
+var menu = document.querySelector('#menu');
+var main = document.querySelector('.main');
+var drawer = document.querySelector('#drawer');
