@@ -3,6 +3,10 @@ html, body, main {
   width: 100%;
 }
 
+#exit {
+  float: right;
+}
+
 #map {
   height: 100%;
   width: 100%;
@@ -18,19 +22,24 @@ a:focus { text-decoration: none; color: blue;}
 a:active { text-decoration: none; color: blue;}
 a:hover { text-decoration: none; color: red;}
 
+/* Following code is helped by Udacity resources from the program */
 nav {
+  background-color: white;
+  border: 3px solid #000;
   width: 300px;
   height: 100%;
   position: absolute;
-  transform: translate(-300px, 0);
+  transform: translate(-350px, 0);
   transition: transform 0.3s ease;
+  z-index: 99;
+  overflow: scroll;
 }
 
 nav.open {
   transform: translate(0, 0);
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 641px) {
   nav {
     position: relative;
     transform: translate(0, 0);

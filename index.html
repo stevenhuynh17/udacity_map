@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <nav id="drawer" class="close">
+    <nav id="drawer">
       <div class="search">
           <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
+          <a id="exit">&#10006;</a>
       </div>
       <div class="list">
         <ul data-bind="foreach: stations()">
