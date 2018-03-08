@@ -49,6 +49,7 @@ function bartAPI() {
 }
 
 function errorHandling(err) {
+  console.log(err);
   alert("Something went wrong...\n\n" + err.responseText);
 }
 
@@ -191,10 +192,6 @@ menu.addEventListener('click', function(e) {
   e.stopPropagation();
 });
 
-main.addEventListener('click', function() {
+function closeSlide() {
   drawer.classList.remove('open');
-});
-
-exit.addEventListener('click', function() {
-  drawer.classList.remove('open');
-});
+}

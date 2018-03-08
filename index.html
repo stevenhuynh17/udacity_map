@@ -10,7 +10,7 @@
     <nav id="drawer">
       <div class="search">
           <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-          <a id="exit">&#10006;</a>
+          <a data-bind="click: closeSlide()">&#10006;</a>
       </div>
       <div class="list">
         <ul data-bind="foreach: stations()">
@@ -20,7 +20,7 @@
         </ul>
       </div>
     </nav>
-    <main>
+    <main data-bind="click: closeSlide()">
       <a id="menu">
         <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
         <svg height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -32,6 +32,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script async defer onerror="mapError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDivIJA5zlZe6-JT6c0H665WA5Q9lqGv3g&v3&callback=initMap"></script>
+    <script async defer onerror="errorHandling()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDivIJA5zlZe6-JT6c0H665WA5Q9lqGv3g&v3&callback=initMap"></script>
   </body>
 </html>
