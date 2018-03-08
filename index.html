@@ -3,35 +3,40 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title></title>
+    <title>BART Mapper</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
     <nav id="drawer">
+      <!-- Text search for BART stations -->
       <div class="search">
           <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
           <a data-bind="click: closeSlide()">&#10006;</a>
       </div>
+
+      <!-- List of stations -->
       <div class="list">
         <ul data-bind="foreach: stations()">
-          <a href="#" data-bind="click: showInfo">
-            <li data-bind="text: name(), visible: shouldShow"></li>
-          </a>
+          <li>
+            <a href="#" data-bind="click: showInfo, text: name(), visible: shouldShow"></a>
+          </li>
         </ul>
       </div>
     </nav>
+
+    <!-- Content containing the map and menu button -->
     <main data-bind="click: closeSlide()">
       <a id="menu">
-        <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-        <svg height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
-        </svg>
+        <img src="img/hamburger.svg">
       </a>
       <div id="map"></div>
     </main>
+
+    <!-- Script loaders -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script src='js/knockout-3.4.2.js'></script>
+    <script src="js/app.js"></script>
     <script async defer onerror="errorHandling()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDivIJA5zlZe6-JT6c0H665WA5Q9lqGv3g&v3&callback=initMap"></script>
   </body>
 </html>

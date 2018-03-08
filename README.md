@@ -6,7 +6,7 @@ A Knockout.js website that utilizes the Google Maps and BART API to display loca
 2) Open app.html with your preferred browser
 
 ## Usage Example
-![alt text](example.png)
+![alt text](img/example.png)
 
 ## Author
 Steven Huynh
