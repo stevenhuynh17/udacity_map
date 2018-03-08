@@ -48,9 +48,14 @@ function bartAPI() {
   .fail(errorHandling);
 }
 
+// Error handlers
 function errorHandling(err) {
   console.log(err);
   alert("Something went wrong...\n\n" + err.responseText);
+}
+
+function mapError() {
+  alert("Google Maps failed to load");
 }
 
 // Applies bindings to utilize the Knockout Framework with StationsViewModel by
@@ -116,7 +121,7 @@ function populateMap(data) {
 
   // For each station, extract the coordinates to create a new instance
   // of a google map marker
-  for(i = 0; i < stations.length; i++) {
+  for(var i = 0; i < stations.length; i++) {
     var lat = Number(stations[i].gtfs_latitude);
     var lng = Number(stations[i].gtfs_longitude );
     var title = stations[i].name;
