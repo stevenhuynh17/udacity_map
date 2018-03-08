@@ -38,6 +38,34 @@ ko.bindingHandlers.autoSearch = {
     }
 };
 
+// View Model for the list of stations to be displayed
+class StationsViewModel {
+  constructor(data) {
+    var menu = document.querySelector('#menu');
+    var main = document.querySelector('main');
+    var drawer = document.querySelector('#drawer');
+    var exit = document.querySelector('#exit');
+    var stations = data.root.stations.station;
+
+    this.query = ko.observable("");
+    this.stations = ko.observableArray(populateMap(data));
+    this.menu = ko.observable(false);
+  }
+
+  menuClick() {
+    this.menu(!this.menu());
+  }
+
+  closeSlide() {
+    drawer.classList.remove('open');
+  }
+}
+
+menu.addEventListener('click', function(e) {
+  drawer.classList.toggle('open');
+  e.stopPropagation();
+});
+
 // BART AJAX API call
 function bartAPI() {
   var info = $.ajax({
@@ -62,13 +90,6 @@ function mapError() {
 // passing down data retreived from the API call
 function apply(data) {
   ko.applyBindings(new StationsViewModel(data));
-}
-
-// View Model for the list of stations to be displayed
-function StationsViewModel(data) {
-  var stations = data.root.stations.station;
-  this.query = ko.observable("");
-  this.stations = ko.observableArray(populateMap(data));
 }
 
 // View Model for the individual station
@@ -184,19 +205,4 @@ function populateMap(data) {
     infowindow.open(map, marker);
   }
   return markers;
-}
-
-// Following code is helped by Udacity resources from the program
-var menu = document.querySelector('#menu');
-var main = document.querySelector('main');
-var drawer = document.querySelector('#drawer');
-var exit = document.querySelector('#exit');
-
-menu.addEventListener('click', function(e) {
-  drawer.classList.toggle('open');
-  e.stopPropagation();
-});
-
-function closeSlide() {
-  drawer.classList.remove('open');
-}
+};

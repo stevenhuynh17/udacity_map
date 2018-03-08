@@ -12,7 +12,7 @@
       <!-- Text search for BART stations -->
       <div class="search">
           <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-          <a data-bind="click: closeSlide()">&#10006;</a>
+          <a id="exit" data-bind="click: closeSlide()">&#10006;</a>
       </div>
 
       <!-- List of stations -->
@@ -27,7 +27,7 @@
 
     <!-- Content containing the map and menu button -->
     <main data-bind="click: closeSlide()">
-      <a id="menu">
+      <a id="menu" data-bind="click: menuClick, css: {nav: menu}">
         <img src="img/hamburger.svg">
       </a>
       <div id="map"></div>
