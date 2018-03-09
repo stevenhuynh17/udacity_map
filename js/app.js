@@ -205,4 +205,4 @@ function populateMap(data) {
     infowindow.open(map, marker);
   }
   return markers;
-};
+}
