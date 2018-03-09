@@ -26,8 +26,8 @@
     </nav>
 
     <!-- Content containing the map and menu button -->
-    <main data-bind="click: closeSlide()">
-      <a id="menu" data-bind="click: menuClick, css: {nav: menu}">
+    <main data-bind="click: closeSlide">
+      <a id="menu" data-bind="click: openSlide, css: {nav: menu}">
         <img src="img/hamburger.svg">
       </a>
       <div id="map"></div>

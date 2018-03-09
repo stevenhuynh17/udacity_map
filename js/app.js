@@ -49,22 +49,22 @@ class StationsViewModel {
 
     this.query = ko.observable("");
     this.stations = ko.observableArray(populateMap(data));
-    this.menu = ko.observable(false);
-  }
-
-  menuClick() {
-    this.menu(!this.menu());
   }
 
   closeSlide() {
     drawer.classList.remove('open');
   }
+
+  openSlide(data, event) {
+    drawer.classList.toggle('open');
+    event.stopPropagation();
+  }
 }
 
-menu.addEventListener('click', function(e) {
-  drawer.classList.toggle('open');
-  e.stopPropagation();
-});
+// menu.addEventListener('click', function(e) {
+//   drawer.classList.toggle('open');
+//   e.stopPropagation();
+// });
 
 // BART AJAX API call
 function bartAPI() {
