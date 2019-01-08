@@ -9,25 +9,30 @@
   </head>
 
   <body>
-    <div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
         <img src="img/underground.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         Bart Station Mapper
       </a>
     </nav>
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2">
-          <nav id="drawer">
-            <!-- List of stations -->
-            <div class="search">
+        <div class="col-sm-2 d-flex flex-column">
+          <!-- <nav id="drawer"> -->
+            <!-- Text search for BART stations -->
+            <!-- <div class="search">
                 <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
                 <a id="exit" data-bind="click: closeSlide()">&#10006;</a>
-            </div>
-            <!-- Text search for BART stations -->
+            </div> -->
+            <!-- List of stations -->
+            <form class="mt-auto py-3">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
+              </div>
+            </form>
             <div>
               <ul class="list-group list-group-flush" data-bind="foreach: stations()">
-                <li class="list-group-item">
+                <li class="list-group-item list-group-item-action">
                   <a href="#" data-bind="click: showInfo, text: name(), visible: shouldShow"></a>
                 </li>
               </ul>
@@ -35,7 +40,7 @@
 
           </nav>
         </div>
-        <div class="col-sm-10" id="map"></div>
+        <div class="col-sm-10 float-left" id="map"></div>
       </div>
 
     <!-- Content containing the map and menu button -->
@@ -45,7 +50,7 @@
       </a>
     </main> -->
 
-    <footer class="footer mt-auto py-3">
+    <footer class="footer mt-auto py-1">
       <div class="container">
         Icons made by
         <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from

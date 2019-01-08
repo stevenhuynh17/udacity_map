@@ -114,16 +114,17 @@ function individualInfo(infowindow, abbr) {
     var stationAttraction = base.attraction["#cdata-section"];
     var stationFood = base.food["#cdata-section"];
     var stationShopping = base.shopping["#cdata-section"];
-    var content = "<div class='marker'>" +
-      "<div class='name'>" +
-        "<h4>" + stationName + "</h4>" +
+    console.log(base);
+    var content = "<div class=''>" +
+      "<div class=''>" +
+        "<h5>" + stationName + "</h5>" +
       "</div>" +
-      "<div class='address'>" +
-        "<p>" + stationAddress + "</p>" +
-        "<p>" + stationIntro + "</p>" +
-        "<p>" + stationAttraction + "</p>" +
-        "<p>" + stationFood + "</p>" +
-        "<p>" + stationShopping + "</p>" +
+      "<div class='card-body'>" +
+        "<p class=''>" + stationAddress + "</p>" +
+        "<p class='card-text'>" + stationIntro + "</p>" +
+        "<a href='https://www.yelp.com/search?find_desc=+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>Attractions</a>" +
+        "<a href='http://www.yelp.com/search?find_desc=Restaurant+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>FOOD</a>" +
+        "<a href='http://www.yelp.com/search?find_desc=Shopping+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>TEST</a>" +
       "</div>" +
     "</div>";
     infowindow.setContent(content);
