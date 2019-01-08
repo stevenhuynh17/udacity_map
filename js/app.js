@@ -122,9 +122,11 @@ function individualInfo(infowindow, abbr) {
       "<div class='card-body'>" +
         "<p class=''>" + stationAddress + "</p>" +
         "<p class='card-text'>" + stationIntro + "</p>" +
-        "<a href='https://www.yelp.com/search?find_desc=+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>Attractions</a>" +
-        "<a href='http://www.yelp.com/search?find_desc=Restaurant+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>FOOD</a>" +
-        "<a href='http://www.yelp.com/search?find_desc=Shopping+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'>TEST</a>" +
+        "<div class='d-flex justify-content-around'>" +
+          "<a class='marker-icon' href='https://www.yelp.com/search?find_desc=+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'><img src='img/roller-coaster.svg' width='50' height='50'></a>" +
+          "<a class='marker-icon' href='http://www.yelp.com/search?find_desc=Restaurant+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'><img src='img/food.svg' width='50' height='50'></a>" +
+          "<a class='marker-icon' href='http://www.yelp.com/search?find_desc=Shopping+&ns=1&rpp=10&find_loc=" + stationAddress + "' target='_blank'><img src='img/bag.svg' width='50' height='50'></a>" +
+        "</div>" +
       "</div>" +
     "</div>";
     infowindow.setContent(content);
