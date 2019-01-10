@@ -9,57 +9,43 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img src="img/underground.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Bart Station Mapper
-      </a>
-    </nav>
-    <div class="container-fluid">
+    <div class="box">
+      <div>
+        <nav class="navbar navbar-dark bg-dark w-100">
+          <a class="navbar-brand" href="#">
+            <img src="img/underground.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Bart Station Mapper
+          </a>
+        </nav>
+      </div>
       <div class="row">
-        <div class="col-sm-2 d-flex flex-column">
-          <!-- <nav id="drawer"> -->
-            <!-- Text search for BART stations -->
-            <!-- <div class="search">
-                <input type="text" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-                <a id="exit" data-bind="click: closeSlide()">&#10006;</a>
-            </div> -->
-            <!-- List of stations -->
-            <form class="mt-auto py-3">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
-              </div>
-            </form>
-            <div>
-              <ul class="list-group list-group-flush" data-bind="foreach: stations()">
-                <li class="list-group-item list-group-item-action">
-                  <a href="#" data-bind="click: showInfo, text: name(), visible: shouldShow"></a>
-                </li>
-              </ul>
+        <div class="col-sm-2">
+          <form class="mt-auto py-3">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
             </div>
-
-          </nav>
+          </form>
+          <div class="content">
+            <ul class="list-group list-group-flush" data-bind="foreach: stations()">
+              <li class="list-group-item list-group-item-action">
+                <a href="#" data-bind="click: showInfo, text: name(), visible: shouldShow"></a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-sm-10 float-left" id="map"></div>
+        <div class="col-sm-10" id="map"></div>
       </div>
-
-    <!-- Content containing the map and menu button -->
-    <!-- <main data-bind="click: closeSlide">
-      <a id="menu" data-bind="click: openSlide">
-        <img src="img/hamburger.svg">
-      </a>
-    </main> -->
-
-    <footer class="footer mt-auto py-1">
-      <div class="container">
-        Icons made by
-        <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
-        <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+      <div>
+        <footer class="footer mt-auto py-1">
+          <div class="">
+            Icons made by
+            <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from
+            <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+            <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+          </div>
+        </footer>
       </div>
-    </footer>
-  </div>
-
+    </div>
 
 
     <!-- Script loaders -->
