@@ -19,7 +19,7 @@
         </nav>
       </div>
       <div class="row">
-        <div class="col-sm-2 d-flex flex-column">
+        <div class="col-sm-2 d-flex flex-column pl-4">
           <form class="mt-auto py-3">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Find a Station" data-bind="textInput: query, autoSearch: query">
@@ -28,7 +28,7 @@
           <div class="content">
             <ul class="list-group list-group-flush" data-bind="foreach: stations()">
               <li class="list-group-item list-group-item-action">
-                <a href="#" data-bind="click: showInfo, text: name(), visible: shouldShow"></a>
+                <a href="#" data-bind="click: showInfo(), text: name(), visible: shouldShow"></a>
               </li>
             </ul>
           </div>

@@ -49,6 +49,8 @@ class StationsViewModel {
 
     this.query = ko.observable("");
     this.stations = ko.observableArray(populateMap(data));
+    this.test = ko.observableArray(stations);
+    console.log(this.test)
   }
 
   closeSlide() {
@@ -97,7 +99,7 @@ function StationInformation(name, marker, info) {
   this.marker = ko.observable(marker);
   this.shouldShow = ko.observable(true);
   this.name = ko.observable(name);
-  this.showInfo = info;
+  this.showInfo = ko.observable(info);
 }
 
 function individualInfo(infowindow, abbr) {
@@ -166,43 +168,54 @@ function populateMap(data) {
   }
 
   function enableMarkers() {
+    console.log(this);
+    stopBounce();
     populateInfoWindow(this, infowindow);
     toggleBounce(this);
   }
 
   // Enables the list of stations to be clicked and interact with the map
   function connectInfo(info) {
-    toggleBounce(info.marker());
+    console.log(event.target.addEventListener("click", () => {console.log("TESTINGGG")}))
+    stopBounce()
     populateInfoWindow(info.marker(), infowindow);
+    toggleBounce(info.marker());
+
   }
 
   // Stops all markers from bouncing
   function stopBounce(marker) {
     for(var i = 0; i < markers.length; i++) {
       var obj = markers[i].marker();
-      if(obj.getAnimation() !== null) {
+      // if(obj.getAnimation() !== null) {
         obj.setAnimation(null);
-      }
+      // }
     }
   }
 
   // Makes the marker bounce when clicked
   function toggleBounce(marker) {
-    // Stops all markers from bouncing
-    stopBounce(marker);
-    // Only allow one marker to bounce at a time
+    console.log(marker.getAnimation() !== null)
+    // stopBounce(marker)
     if(marker.getAnimation() !== null) {
-      marker.setAnimation(null);
+      stopBounce(marker)
     } else {
       marker.setAnimation(google.maps.Animation.BOUNCE);
     }
+    // Stops all markers from bouncing
+    // stopBounce(marker);
+    // Only allow one marker to bounce at a time
+
+
   }
 
   // Displays information of the marker when clicked
   function populateInfoWindow(marker, infowindow) {
+    console.log(infowindow)
     infowindow.addListener("closeclick", function() {
       stopBounce(marker);
     });
+
     infowindow.close(map, marker);
     individualInfo(infowindow, marker.abbr);
     infowindow.open(map, marker);
