@@ -50,7 +50,6 @@ class StationsViewModel {
     this.query = ko.observable("");
     this.stations = ko.observableArray(populateMap(data));
     this.test = ko.observableArray(stations);
-    console.log(this.test)
   }
 
   closeSlide() {
@@ -116,7 +115,6 @@ function individualInfo(infowindow, abbr) {
     var stationAttraction = base.attraction["#cdata-section"];
     var stationFood = base.food["#cdata-section"];
     var stationShopping = base.shopping["#cdata-section"];
-    console.log(base);
     var content = "<div class=''>" +
       "<div class=''>" +
         "<h5>" + stationName + "</h5>" +
@@ -168,18 +166,21 @@ function populateMap(data) {
   }
 
   function enableMarkers() {
-    console.log(this);
     stopBounce();
     populateInfoWindow(this, infowindow);
+    // console.log(this)
     toggleBounce(this);
   }
 
   // Enables the list of stations to be clicked and interact with the map
   function connectInfo(info) {
-    console.log(event.target.addEventListener("click", () => {console.log("TESTINGGG")}))
-    stopBounce()
+    console.log(info.marker())
+
+    stopBounce();
+
+    console.log(info.marker().getAnimation())
+    toggleBounce(info.marker(), event);
     populateInfoWindow(info.marker(), infowindow);
-    toggleBounce(info.marker());
 
   }
 
@@ -194,14 +195,18 @@ function populateMap(data) {
   }
 
   // Makes the marker bounce when clicked
-  function toggleBounce(marker) {
-    console.log(marker.getAnimation() !== null)
-    // stopBounce(marker)
-    if(marker.getAnimation() !== null) {
-      stopBounce(marker)
-    } else {
-      marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
+  function toggleBounce(marker, event) {
+    console.log(marker.getAnimation())
+    // if(marker.getAnimation() !== null) {
+    //   // stopBounce(marker)
+    //   marker.setAnimation(null);
+    // } else {
+    //   marker.setAnimation(google.maps.Animation.BOUNCE);
+    // }
+    // event.target.addEventListener("click", () => {
+    //   infowindow.close()
+    // }, {once: true})
+    marker.setAnimation(google.maps.Animation.BOUNCE);
     // Stops all markers from bouncing
     // stopBounce(marker);
     // Only allow one marker to bounce at a time
@@ -211,10 +216,9 @@ function populateMap(data) {
 
   // Displays information of the marker when clicked
   function populateInfoWindow(marker, infowindow) {
-    console.log(infowindow)
     infowindow.addListener("closeclick", function() {
       stopBounce(marker);
-    });
+    }, {once: true});
 
     infowindow.close(map, marker);
     individualInfo(infowindow, marker.abbr);
